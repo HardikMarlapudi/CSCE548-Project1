@@ -19,4 +19,26 @@ public class WeatherCondition {
     public String toString() {
         return conditionId + ": " + description;
     }
+
+    /**
+     * @return int return the conditionId
+     */
+    public int getConditionId() {
+        return conditionId;
+    }
+
+    /**
+     * @param conditionId the conditionId to set
+     */
+    public void setConditionId(int conditionId) {
+        this.conditionId = conditionId;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }
