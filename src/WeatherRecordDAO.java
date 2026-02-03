@@ -1,29 +1,33 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherRecordDAO {
     
-    public ArrayList<WeatherRecord> getAllRecords() {
-        ArrayList<WeatherRecord> records = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection()) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM weather_records");
+    public List<String> getAllRecords() {
+    List<String> records = new ArrayList<>();
+    String sql = "SELECT * FROM weather_records";
 
-            while (rs.next()) {
-                records.add(new WeatherRecord(
-                    rs.getInt("record_id"),
-                    rs.getInt("location_id"),
-                    rs.getInt("condition_id"),
-                    rs.getDouble("temperature"),
-                    rs.getInt("humidity"),
-                    rs.getDate("record_date")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    try (Connection conn = DBConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+
+        while (rs.next()) {
+            records.add(
+                rs.getInt("record_id") +
+                " | Station ID: " + rs.getInt("station_id") +
+                " | Condition: " + rs.getString("condition_name") +
+                " | Temp: " + rs.getDouble("temperature") +
+                " | Humidity: " + rs.getInt("humidity") +
+                " | Date: " + rs.getDate("record_date")
+            );
         }
-        return records;
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return records;
+}
 
     public void addRecord(WeatherRecord record) {
         try (Connection conn = DBConnection.getConnection()) {
