@@ -50,16 +50,16 @@ The database is populated with **50 weather records** across multiple cities and
 
 ## Project Structure
 
-CSCE548-Project1/
-├── src/
-│ ├── Main.java
-│ ├── DBConnection.java
-│ ├── WeatherRecord.java
-│ ├── WeatherRecordDAO.java
-│ ├── Alert.java
-│ ├── AlertDAO.java
-│ └── StationDAO.java
-├── sql/
-│ ├── schema.sql
-│ └── data.sql
-├── README.md
+src/
+├── main/
+│   └── Main.java
+├── db/
+│   └── DBConnection.java
+├── model/
+│   ├── WeatherRecord.java
+│   ├── Alert.java
+│   └── Station.java
+├── dao/
+│   ├── WeatherRecordDAO.java
+│   ├── AlertDAO.java
+│   └── StationDAO.java
