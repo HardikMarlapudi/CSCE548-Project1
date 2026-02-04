@@ -10,10 +10,7 @@ public class WeatherRecord {
     private int humidity;
     private Date recordDate;
 
-    public WeatherRecord(String cityName, String stationName,
-                         String conditionName, double temperature,
-                         int humidity, Date recordDate) {
-
+    public WeatherRecord(String cityName, String stationName, String conditionName, double temperature, int humidity, Date recordDate) {
         this.cityName = cityName;
         this.stationName = stationName;
         this.conditionName = conditionName;
@@ -22,15 +19,37 @@ public class WeatherRecord {
         this.recordDate = recordDate;
     }
 
-    public int getRecordId() { return recordId; }
-    public void setRecordId(int recordId) { this.recordId = recordId; }
+    public int getRecordId() { 
+        return recordId; 
+    }
 
-    public String getCityName() { return cityName; }
-    public String getStationName() { return stationName; }
-    public String getConditionName() { return conditionName; }
-    public double getTemperature() { return temperature; }
-    public int getHumidity() { return humidity; }
-    public Date getRecordDate() { return recordDate; }
+    public void setRecordId(int recordId) { 
+        this.recordId = recordId; 
+    }
+
+    public String getCityName() { 
+        return cityName; 
+    }
+
+    public String getStationName() { 
+        return stationName; 
+    }
+
+    public String getConditionName() { 
+        return conditionName; 
+    }
+
+    public double getTemperature() { 
+        return temperature; 
+    }
+
+    public int getHumidity() { 
+        return humidity; 
+    }
+
+    public Date getRecordDate() { 
+        return recordDate; 
+    }
 
     /**
      * @param cityName the cityName to set
