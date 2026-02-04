@@ -1,77 +1,42 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.*;
 
 public class AlertDAO {
-    
+
+    public List<String> getAllAlerts() {
+        List<String> alerts = new ArrayList<>();
+        String sql = "SELECT * FROM alerts ORDER BY alert_id ASC";
+
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                alerts.add(
+                    rs.getInt("alert_id") +
+                    " | Location: " + rs.getString("location_name") +
+                    " | Message: " + rs.getString("message")
+                );
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return alerts;
+    }
+
     public void addAlert(Alert alert) {
-        String sql = "INSERT INTO Alerts VALUES (" + alert.getAlertId() + ", " + alert.getUserId() + ", " + alert.getLcationId() + ", '" + alert.getMessage() + "')";
+        String sql =
+            "INSERT INTO alerts (location_name, message) VALUES (?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-    public ArrayList<Alert> getAllAlerts() {
-        ArrayList<Alert> alerts = new ArrayList<>();
-        String sql = "SELECT * FROM alerts";
+            ps.setString(1, alert.getLocationName());
+            ps.setString(2, alert.getMessage());
+            ps.executeUpdate();
 
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery()) {
-
-            while (rs.next()) {
-                alerts.add(new Alert(
-                    rs.getInt("alert_id"),
-                    rs.getInt("user_id"),
-                    rs.getInt("location_id"),
-                    rs.getString("message")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return alerts;
-    }
-
-    public ArrayList<Alert> getAlertsByUser(int userId) {
-        ArrayList<Alert> alerts = new ArrayList<>();
-        String sql = "SELECT * FROM alerts WHERE user_id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, userId);
-                ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                alerts.add(new Alert(
-                    rs.getInt("alert_id"),
-                    rs.getInt("user_id"),
-                    rs.getInt("location_id"),
-                    rs.getString("message")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return alerts;
-
-    }
-
-    public void updateAlertMessage(int alertId, String newMessage) {
-        String sql = "UPDATE alerts SET message = ? WHERE alert_id = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, newMessage);
-                pstmt.setInt(2, alertId);
-                pstmt.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

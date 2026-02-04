@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         WeatherRecordDAO weatherDAO = new WeatherRecordDAO();
         AlertDAO alertDAO = new AlertDAO();
 
@@ -21,6 +20,7 @@ public class Main {
             System.out.print("Choice: ");
 
             int choice = scanner.nextInt();
+            scanner.nextLine(); // consume newline
 
             switch (choice) {
 
@@ -29,26 +29,32 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.print("Location ID: ");
-                    int loc = scanner.nextInt();
+                    System.out.print("City name: ");
+                    String city = scanner.nextLine();
 
-                    System.out.print("Condition ID: ");
-                    int cond = scanner.nextInt();
+                    System.out.print("Station name: ");
+                    String station = scanner.nextLine();
+
+                    System.out.print("Condition (Sunny/Rainy/Cloudy): ");
+                    String condition = scanner.nextLine();
 
                     System.out.print("Temperature: ");
                     double temp = scanner.nextDouble();
 
                     System.out.print("Humidity: ");
-                    int hum = scanner.nextInt();
+                    int humidity = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
 
-                    weatherDAO.addRecord(new WeatherRecord(
-                            0,
-                            loc,
-                            cond,
+                    weatherDAO.addRecord(
+                        new WeatherRecord(
+                            city,
+                            station,
+                            condition,
                             temp,
-                            hum,
+                            humidity,
                             new Date(System.currentTimeMillis())
-                    ));
+                        )
+                    );
 
                     System.out.println("Weather record added.");
                     break;
@@ -56,6 +62,7 @@ public class Main {
                 case 3:
                     System.out.print("Record ID to delete: ");
                     int recordId = scanner.nextInt();
+                    scanner.nextLine(); // consume newline
                     weatherDAO.deleteRecord(recordId);
                     System.out.println("Weather record deleted.");
                     break;
@@ -65,17 +72,13 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.print("User ID: ");
-                    int userId = scanner.nextInt();
+                    System.out.print("Location name: ");
+                    String location = scanner.nextLine();
 
-                    System.out.print("Location ID: ");
-                    int locationId = scanner.nextInt();
-
-                    scanner.nextLine(); // clear newline
                     System.out.print("Alert message: ");
                     String message = scanner.nextLine();
 
-                    alertDAO.addAlert(new Alert(0, userId, locationId, message));
+                    alertDAO.addAlert(new Alert(location, message));
                     System.out.println("Alert added.");
                     break;
 

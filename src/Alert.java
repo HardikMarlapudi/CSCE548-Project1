@@ -1,13 +1,11 @@
 public class Alert {
+
     private int alertId;
-    private int userId;
-    private int locationId;
+    private String locationName;
     private String message;
 
-    public Alert(int alertId, int userId, int locationId, String message) {
-        this.alertId = alertId;
-        this.userId = userId;
-        this.locationId = locationId;
+    public Alert(String locationName, String message) {
+        this.locationName = locationName;
         this.message = message;
     }
 
@@ -15,19 +13,33 @@ public class Alert {
         return alertId;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public int getLcationId() {
-        return locationId;
+    public String getLocationName() {
+        return locationName;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String toString() {
-        return alertId + ": " + message;
+    /**
+     * @param alertId the alertId to set
+     */
+    public void setAlertId(int alertId) {
+        this.alertId = alertId;
     }
+
+    /**
+     * @param locationName the locationName to set
+     */
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }

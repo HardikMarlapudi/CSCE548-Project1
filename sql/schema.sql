@@ -1,40 +1,49 @@
-CREATE DATABASE weather_db;
+CREATE DATABASE IF NOT EXISTS weather_db;
 USE weather_db;
 
+-- =========================
+-- LOCATIONS
+-- =========================
 CREATE TABLE locations (
-    location_id INT AUTO_INCREMENT PRIMARY KEY,
-    city VARCHAR(100),
+    location_name VARCHAR(100) PRIMARY KEY,
     state VARCHAR(50),
     country VARCHAR(50)
 );
 
+-- =========================
+-- WEATHER CONDITIONS
+-- =========================
 CREATE TABLE weather_conditions (
-    condition_id INT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(50)
+    condition_name VARCHAR(50) PRIMARY KEY
 );
 
+-- =========================
+-- STATIONS
+-- =========================
+CREATE TABLE stations (
+    station_id INT AUTO_INCREMENT PRIMARY KEY,
+    station_name VARCHAR(100),
+    location_name VARCHAR(100)
+);
+
+-- =========================
+-- WEATHER RECORDS (MAIN TABLE)
+-- =========================
 CREATE TABLE weather_records (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
-    location_id INT,
-    condition_id INT,
+    city_name VARCHAR(100),
+    station_name VARCHAR(100),
+    condition_name VARCHAR(50),
     temperature DECIMAL(5,2),
     humidity INT,
-    record_date DATE,
-    FOREIGN KEY (location_id) REFERENCES locations(location_id),
-    FOREIGN KEY (condition_id) REFERENCES weather_conditions(condition_id)
+    record_date DATE
 );
 
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    email VARCHAR(100)
-);
-
+-- =========================
+-- ALERTS
+-- =========================
 CREATE TABLE alerts (
     alert_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    location_id INT,
-    message VARCHAR(255),
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+    location_name VARCHAR(100),
+    message VARCHAR(255)
 );
