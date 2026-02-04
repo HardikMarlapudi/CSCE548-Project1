@@ -47,19 +47,3 @@ The database consists of the following five tables:
 The database is populated with **50 weather records** across multiple cities and stations to satisfy project requirements. Test data is inserted using SQL scripts.
 
 ---
-
-## Project Structure
-
-src/
-├── main/
-│   └── Main.java
-├── db/
-│   └── DBConnection.java
-├── model/
-│   ├── WeatherRecord.java
-│   ├── Alert.java
-│   └── Station.java
-├── dao/
-│   ├── WeatherRecordDAO.java
-│   ├── AlertDAO.java
-│   └── StationDAO.java
