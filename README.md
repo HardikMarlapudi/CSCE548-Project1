@@ -1,4 +1,4 @@
-# CSCE548 – Project 1  
+# CSCE548 – SemesterProject
 ## Weather Management System
 
 ### Author
