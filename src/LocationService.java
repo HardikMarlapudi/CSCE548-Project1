@@ -19,6 +19,6 @@ public class LocationService {
         });
 
         server.start();
-        System.out.println("Location Service running on port 8083");
+        System.out.println("Location Service running at http://localhost:8083/locations");
     }
 }

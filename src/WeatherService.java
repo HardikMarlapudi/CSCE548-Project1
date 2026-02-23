@@ -19,6 +19,6 @@ public class WeatherService {
         });
 
         server.start();
-        System.out.println("Weather Service running on port 8081");
+        System.out.println("Weather Service running at http://localhost:8081/weather");
     }
 }

@@ -19,6 +19,6 @@ public class AlertService {
         });
 
         server.start();
-        System.out.println("Alert Service running on port 8082");
+        System.out.println("Alert Service running at http://localhost:8082/alerts");
     }
 }
