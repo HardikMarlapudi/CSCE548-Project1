@@ -39,7 +39,7 @@ function displayWeather(data) {
         <h3>${record.cityName}</h3>
         <p><strong>Station:</strong> ${record.stationName}</p>
         <p><strong>Condition:</strong> ${record.conditionName}</p>
-        <p><strong>Temperature:</strong> ${record.temperature}°C</p>
+        <p><strong>Temperature:</strong> ${record.temperature}°F</p>
         <p><strong>Humidity:</strong> ${record.humidity}%</p>
         <p><strong>Date:</strong> ${record.recordDate}</p>
         `;
