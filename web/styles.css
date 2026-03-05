@@ -108,7 +108,7 @@ textarea {
     cursor: pointer;
 }
 
-#station {
+#state {
     display: flex;
     flex-direction: column;
     text-align: center;

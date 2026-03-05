@@ -71,8 +71,8 @@ public class WeatherBusiness {
             record.getCityName().trim().isEmpty())
             throw new IllegalArgumentException("City required");
 
-        if (record.getStationName() == null ||
-            record.getStationName().trim().isEmpty())
+        if (record.getStateName() == null ||
+            record.getStateName().trim().isEmpty())
             throw new IllegalArgumentException("Station required");
 
         if (record.getConditionName() == null ||

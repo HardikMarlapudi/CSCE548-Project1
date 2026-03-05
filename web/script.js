@@ -37,7 +37,7 @@ function displayWeather(data) {
         card.innerHTML = `
         <div class="icon">${icon}</div>
         <h3>${record.cityName}</h3>
-        <p><strong>Station:</strong> ${record.stationName}</p>
+        <p><strong>State:</strong> ${record.stateName}</p>
         <p><strong>Condition:</strong> ${record.conditionName}</p>
         <p><strong>Temperature:</strong> ${record.temperature}°F</p>
         <p><strong>Humidity:</strong> ${record.humidity}%</p>
@@ -98,7 +98,7 @@ async function loadWeatherUI() {
 async function addRecord() {
     const data = {
         cityName: document.getElementById("city").value,
-        stationName: document.getElementById("station").value,
+        stateName: document.getElementById("state").value,
         conditionName: document.getElementById("condition").value,
         temperature: parseFloat(document.getElementById("temperature").value),
         humidity: parseInt(document.getElementById("humidity").value),
@@ -127,7 +127,7 @@ async function updateRecord() {
 
     const data = {
         cityName: document.getElementById("city").value,
-        stationName: document.getElementById("station").value,
+        stateName: document.getElementById("state").value,
         conditionName: document.getElementById("condition").value,
         temperature: parseFloat(document.getElementById("temperature").value),
         humidity: parseInt(document.getElementById("humidity").value),
