@@ -4,12 +4,15 @@ const weatherIcons = {
     "Sunny": "☀️",
     "Cloudy": "☁️",
     "Rainy": "🌧️",
-    "Snowy": "❄️",
-    "Stormy": "⛈️",
+    "Snow": "❄️",
+    "Thunderstorm": "⛈️",
     "Windy": "💨",
     "Fog": "🌫️",
     "Partly Cloudy": "⛅",
-    "Overcast": "🌥️",
+    "Drizzle": "🌦️",
+    "Hail": "🌨️",
+    "Sandstorm": "🌪️",
+    "Blizzard": "☃️",   
     "Clear": "🌙"
 }
 
