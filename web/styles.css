@@ -19,7 +19,9 @@ h2 {
 }
 
 #weatherSection {
-    text-align: center;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .controls {
@@ -69,12 +71,6 @@ button:hover {
 
 .weather-card .icon {
     font-size: 40px;
-}
-
-#weatherSection {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
 }
 
 textarea {
