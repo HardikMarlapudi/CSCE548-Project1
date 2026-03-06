@@ -107,10 +107,11 @@ public class WeatherRecordDAO {
     public void updateRecord(int id, WeatherRecord r) throws Exception {
 
         String sql =
-            "UPDATE weather_records SET " +
-            "city_name=?, state_name=?, condition_name=?, " +
-            "temperature=?, humidity=?, record_date=? " +
-            "WHERE record_id=?";
+        "SELECT w.record_id, w.city_name, w.station_name, w.condition_name, " +
+        "w.temperature, w.humidity, w.record_date, l.state " +
+        "FROM weather_records w " +
+        "JOIN locations l ON w.city_name = l.location_name " +
+        "ORDER BY w.record_id";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
