@@ -51,7 +51,7 @@ function displayWeather(data) {
 async function fetchData(url, title) {
     try {
 
-        output.textContent = "Loading " + title + "...";
+        output.value = "Loading " + title + "...";
 
         const response = await fetch(url, {
             method: 'GET',
@@ -65,9 +65,9 @@ async function fetchData(url, title) {
         }
         const text = await response.text();
 
-        output.textContent = "===== " + title + " =====\n\n" + text;
+        output.value = "===== " + title + " =====\n\n" + text;
     } catch (error) {
-        output.textContent = "ERROR:\n" + error.message;
+        output.value = "ERROR:\n" + error.message;
     }
 }
 
@@ -78,7 +78,7 @@ async function loadWeather() {
 
     const data = await response.json();
 
-    output.textContent =
+    output.value =
         "===== Weather Service =====\n\n" +
         JSON.stringify(data, null, 2);
 
@@ -87,11 +87,47 @@ async function loadWeather() {
 
 async function loadWeatherUI() {
 
-    const response = await fetch("http://localhost:8081/weather");
+    const output = document.getElementById("output");
+    const cards = document.getElementById("weatherSection");
 
-    const data = await response.json();
+    output.value = ""; // clear JSON
+    cards.innerHTML = "";
 
-    displayWeather(data);
+    try {
+
+        const response = await fetch("http://localhost:8081/weather");
+        const data = await response.json();
+
+        displayWeather(data);
+
+    } catch (error) {
+
+        output.value = "Error loading weather UI";
+
+    }
+}
+
+async function loadWeatherJSON() {
+
+    const output = document.getElementById("output");
+    const cards = document.getElementById("weatherSection");
+
+    try {
+
+        const response = await fetch("http://localhost:8081/weather");
+        const data = await response.json();
+
+        cards.innerHTML = ""; // remove weather cards
+
+        output.value =
+            "===== Weather Service =====\n\n" +
+            JSON.stringify(data, null, 2);
+
+    } catch (error) {
+
+        output.value = "Error loading JSON";
+
+    }
 }
 
 // ADD WEATHER (POST)
@@ -113,7 +149,7 @@ async function addRecord() {
         body: JSON.stringify(data)
     })
     alert("Operation Successful!");
-    loadWeather();
+    loadWeatherUI();
 }
 
 // UPDATE WEATHER (PUT)
@@ -143,7 +179,7 @@ async function updateRecord() {
     })
 
     alert("Operation Successful!");
-    loadWeather();
+    loadWeatherUI();
 }
 
 // DELETE WEATHER (DELETE)

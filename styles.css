@@ -28,17 +28,46 @@ h2 {
 .controls {
     text-align: center;
     margin: 30px;
+    font-size: 5%;
+}
+
+#loadWeatherJSON {
+    font-size: 15px;
+}
+
+#loadWeatherui {
+    font-size: 15px;
+}
+
+#loadAlert {
+    font-size: 15px;
+}
+
+#loadLocation {
+    font-size: 15px;
 }
 
 button {
-    padding: 12px 20px;
-    margin: 10px;
-    font-size: 15px;
+    padding: 10px 18px;
+    margin: 0.5rem;
+    font-size: 14px;
     border: none;
     background-color: #0066cc;
     color: white;
     border-radius: 6px;
+    width: auto;
+    max-width: 100%;
     cursor: pointer;
+}
+
+@media (max-width: 600px) {
+
+    button {
+        width: 100%;
+        margin: 8px 0;
+        font-size: 16px;
+        padding: 12px;
+    }
 }
 
 button:hover {
