@@ -107,15 +107,14 @@ public class WeatherRecordDAO {
     public void updateRecord(int id, WeatherRecord r) throws Exception {
 
         String sql =
-        "SELECT w.record_id, w.city_name, w.station_name, w.condition_name, " +
-        "w.temperature, w.humidity, w.record_date, l.state " +
-        "FROM weather_records w " +
-        "JOIN locations l ON w.city_name = l.location_name " +
-        "ORDER BY w.record_id";
-
+            "UPDATE weather_records SET " +
+            "city_name=?, state_name=?, condition_name=?, " +
+            "temperature=?, humidity=?, record_date=? " +
+            "WHERE record_id=?";
+    
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
+    
             ps.setString(1, r.getCityName());
             ps.setString(2, r.getStateName());
             ps.setString(3, r.getConditionName());
@@ -123,7 +122,7 @@ public class WeatherRecordDAO {
             ps.setInt(5, r.getHumidity());
             ps.setDate(6, r.getRecordDate());
             ps.setInt(7, id);
-
+    
             ps.executeUpdate();
         }
     }
