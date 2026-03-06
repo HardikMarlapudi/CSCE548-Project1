@@ -15,19 +15,21 @@
 </header>
 
 <section class="controls">
-    <button onclick="loadWeather()">Load Weather (JSON)</button>
-    <button onclick="loadWeatherUI()">Load Weather (UI)</button>
-    <button onclick="loadAlerts()">Load Alerts</button>
-    <button onclick="loadLocations()">Load Locations</button>
+    <button id="loadWeatherJSON" onclick="loadWeatherJSON()">Load Weather (JSON)</button>
+    <button id="loadWeatherui" onclick="loadWeatherUI()">Load Weather (UI)</button>
+    <button id ="loadAlert" onclick="loadAlerts()">Load Alerts</button>
+    <button id ="loadLocation" onclick="loadLocations()">Load Locations</button>
 </section>
 
 
 <h2>Weather Cards</h2>
+
 <div id="weatherSection"></div><br>
 
 <section class="results">
     <h2>Service Output</h2>
     <textarea id="output">Click a button to load data...</textarea>
+    <div id="weatherRecords"></div>
 </section>
 
 <h3 id="weatherRecordsTitle">Manage Weather Records</h3>
