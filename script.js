@@ -10,7 +10,6 @@ const temperature = document.getElementById("temperature");
 const humidity = document.getElementById("humidity");
 const date = document.getElementById("date");
 
-
 /* ------------------------------
 DISPLAY WEATHER TABLE
 ------------------------------ */
@@ -55,7 +54,6 @@ function displayWeather(data) {
 
 }
 
-
 /* ------------------------------
 LOAD WEATHER DATA
 ------------------------------ */
@@ -78,7 +76,6 @@ async function loadWeatherUI() {
 
 }
 
-
 /* ------------------------------
 LOAD WEATHER JSON (DEVTOOLS)
 ------------------------------ */
@@ -88,19 +85,14 @@ async function loadWeatherJSON() {
     try {
 
         const response = await fetch("http://localhost:8081/weather");
-
         const data = await response.json();
-
         console.log("Weather JSON:", data);
 
     } catch(error) {
-
         console.error("Error loading JSON:", error);
-
     }
 
 }
-
 
 /* ------------------------------
 ADD WEATHER RECORD
@@ -130,19 +122,14 @@ async function addRecord() {
         });
 
         if(!response.ok) throw new Error("Failed to add record");
-
         alert("Record Added");
-
         loadWeatherUI();
 
     } catch(error) {
-
         console.error("Add error:", error);
-
     }
 
 }
-
 
 /* ------------------------------
 UPDATE WEATHER RECORD
@@ -151,10 +138,8 @@ UPDATE WEATHER RECORD
 async function updateRecord() {
 
     if(!recordId.value) {
-
         alert("Please select a record first");
         return;
-
     }
 
     try {
@@ -179,19 +164,14 @@ async function updateRecord() {
         });
 
         if(!response.ok) throw new Error("Update failed");
-
         alert("Record Updated");
-
         loadWeatherUI();
 
     } catch(error) {
-
         console.error("Update error:", error);
-
     }
 
 }
-
 
 /* ------------------------------
 DELETE WEATHER RECORD
@@ -200,18 +180,13 @@ DELETE WEATHER RECORD
 async function deleteRecord() {
 
     if(!recordId.value) {
-
         alert("Please select a record first");
         return;
-
     }
 
     try {
-
         const response = await fetch(`http://localhost:8081/weather/${recordId.value}`, {
-
             method: "DELETE"
-
         });
 
         if(!response.ok) throw new Error("Delete failed");
@@ -221,13 +196,10 @@ async function deleteRecord() {
         loadWeatherUI();
 
     } catch(error) {
-
         console.error("Delete error:", error);
-
     }
 
 }
-
 
 /* ------------------------------
 LOAD DATA ON PAGE START
